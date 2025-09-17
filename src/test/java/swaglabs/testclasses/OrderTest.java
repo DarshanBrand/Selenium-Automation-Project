@@ -18,8 +18,24 @@ public class OrderTest extends Baseclass {
         // Get all product names
 
         System.out.println("The Page title is >> "+ driver.getTitle());
+
+        //Click on the expected product name
         order.clickOnProduct(productName);
+
+        //Store the price of the product
+       String ProductPrice=order.getPriceOfTheProduct();
+
         Thread.sleep(5000);
+
+        //Click on the add to cart button
+        order.clickAddToCartButton();
+
+
+        //Click on the cart Icon
+        order.clickShoppingCartIcon();
+
+        Thread.sleep(5000);
+
 
     }
 }
