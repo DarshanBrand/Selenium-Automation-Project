@@ -1,11 +1,14 @@
 package swaglabs.testclasses;
 
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import swaglabs.POM.Order;
 import swaglabs.baseclasses.Baseclass;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class OrderTest extends Baseclass {
 
@@ -14,25 +17,27 @@ public class OrderTest extends Baseclass {
     {
         Order order = new Order(driver);
 
-        String productName="Sauce Labs Bolt T-Shirt";
-        // Get all product names
+        String ProductName="Sauce Labs Onesie";
 
-        System.out.println("The Page title is >> "+ driver.getTitle());
+        order.clickOnProduct(ProductName);
 
-        //Click on the expected product name
-        order.clickOnProduct(productName);
-
-        //Store the price of the product
-       String ProductPrice=order.getPriceOfTheProduct();
-
-        Thread.sleep(5000);
-
-        //Click on the add to cart button
         order.clickAddToCartButton();
 
-
-        //Click on the cart Icon
         order.clickShoppingCartIcon();
+
+       String Price=order.getPriceOfTheProductOnCartPage();
+
+       System.out.println("The Price of the Product is : "+Price);
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(Price,"$7.99");
+
+        softAssert.assertAll();
+
+        order.clickCheckoutButton();
+
+
 
         Thread.sleep(5000);
 

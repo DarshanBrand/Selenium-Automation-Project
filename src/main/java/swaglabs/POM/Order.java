@@ -6,11 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import swaglabs.utils.ActionUtils;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
-
 
     public WebDriver driver;
     public ActionUtils actionUtils;
@@ -21,7 +21,6 @@ public class Order {
         PageFactory.initElements(driver, this);
         actionUtils = new ActionUtils(driver);
     }
-
 
     // PageFactory Locators
     @FindBy (xpath = "//div[@class='inventory_item_label']//a")
@@ -35,6 +34,12 @@ public class Order {
 
     @FindBy(xpath = "//div[@class='shopping_cart_container']//a")
     private WebElement shoppingCartIcon;
+
+    @FindBy(xpath = "//div[@class='item_pricebar']//div")
+    private WebElement cartItemPrice;
+
+    @FindBy(id = "checkout")
+    private WebElement checkoutButton;
 
     //=======================================================================================================
 
@@ -52,8 +57,7 @@ public class Order {
         throw new RuntimeException(" Product not found: " + productName);
     }
 
-
-    public String getPriceOfTheProduct() {
+    public String getPriceOfTheProductOnProductsPage() {
         return productPrice.getText().trim();   // return value to test class
     }
 
@@ -67,6 +71,21 @@ public class Order {
         actionUtils.clickElement(shoppingCartIcon);
     }
 
+    public String getPriceOfTheProductOnCartPage() {
+        return cartItemPrice.getText().trim();   // return value to test class
+    }
+
+    public void clickCheckoutButton() {
+        checkoutButton.click();
+    }
 
 
-}
+
+
+
+
+    }
+
+
+
+
