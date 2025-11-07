@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-14T14:51:20 IST" name="Suite" finished-at="2025-09-14T14:51:49 IST" duration-ms="29783">
+  <suite started-at="2025-11-07T07:07:51 IST" name="Suite" finished-at="2025-11-07T07:08:45 IST" duration-ms="53534">
     <groups>
     </groups>
-    <test started-at="2025-09-14T14:51:20 IST" name="LoginTests" finished-at="2025-09-14T14:51:49 IST" duration-ms="29783">
+    <test started-at="2025-11-07T07:07:51 IST" name="LoginTests" finished-at="2025-11-07T07:08:45 IST" duration-ms="53534">
       <class name="swaglabs.testclasses.OrderTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:swaglabs.testclasses.OrderTest@536dbea0]" started-at="2025-09-14T14:51:20 IST" name="setUp" finished-at="2025-09-14T14:51:39 IST" duration-ms="19718" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:swaglabs.testclasses.OrderTest@77659b30]" started-at="2025-11-07T07:07:51 IST" name="setUp" finished-at="2025-11-07T07:08:22 IST" duration-ms="30916" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="place_Order()[pri:0, instance:swaglabs.testclasses.OrderTest@536dbea0]" started-at="2025-09-14T14:51:40 IST" name="place_Order" finished-at="2025-09-14T14:51:45 IST" duration-ms="5670" status="PASS">
+        <test-method signature="place_Order()[pri:0, instance:swaglabs.testclasses.OrderTest@77659b30]" started-at="2025-11-07T07:08:22 IST" name="place_Order" finished-at="2025-11-07T07:08:35 IST" duration-ms="12483" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- place_Order -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:swaglabs.testclasses.OrderTest@536dbea0]" started-at="2025-09-14T14:51:46 IST" name="tearDown" finished-at="2025-09-14T14:51:49 IST" duration-ms="3660" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:swaglabs.testclasses.OrderTest@77659b30]" started-at="2025-11-07T07:08:36 IST" name="tearDown" finished-at="2025-11-07T07:08:45 IST" duration-ms="8473" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
