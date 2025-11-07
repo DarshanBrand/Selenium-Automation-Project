@@ -1,45 +1,64 @@
 package swaglabs.testclasses;
-
-import org.testng.Assert;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import swaglabs.POM.Order;
 import swaglabs.baseclasses.Baseclass;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import swaglabs.utils.JsonUtils;
 
 public class OrderTest extends Baseclass {
 
     @Test
-    public void place_Order() throws InterruptedException
-    {
+    public void place_Order() throws InterruptedException {
+        // Create an instance of the Order Page using the WebDriver instance
         Order order = new Order(driver);
 
-        String ProductName="Sauce Labs Onesie";
+       // Define the product name to be selected
+        String ProductName = "Sauce Labs Onesie";
 
+       // Click on the specified product to open its details page
         order.clickOnProduct(ProductName);
 
+       // Click the 'Add to Cart' button on the product details page
         order.clickAddToCartButton();
 
+       // Click on the shopping cart icon to navigate to the cart page
         order.clickShoppingCartIcon();
 
-       String Price=order.getPriceOfTheProductOnCartPage();
+       // Get the price of the selected product from the cart page
+        String Price = order.getPriceOfTheProductOnCartPage();
 
-       System.out.println("The Price of the Product is : "+Price);
+       // Print the product price in the console for reference
+        System.out.println("The Price of the Product is : " + Price);
 
+       // Create a SoftAssert instance for validation without immediate test termination
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertEquals(Price,"$7.99");
+       // Verify that the product price in the cart matches the expected value
+        softAssert.assertEquals(Price, "$7.99", "Product price mismatch!");
 
+       // Collate all soft assertions (marks test failed if any assertion fails)
         softAssert.assertAll();
 
+       // Click on the 'Checkout' button to proceed to the checkout page
         order.clickCheckoutButton();
 
+        JsonObject data = JsonUtils.getJsonData("orderdata.json");
 
+        // Step 2: Access the "customers" array
+        JsonArray customers = data.getAsJsonArray("customers");
 
-        Thread.sleep(5000);
+        // Step 3: Access the first object (index 0)
+        JsonObject firstCustomer = customers.get(0).getAsJsonObject();
+
+        // Step 4: Extract "firstName"
+        String firstName = firstCustomer.get("firstName").getAsString();
+
+        // Step 5: Print or use it in your test
+        System.out.println("First Customer First Name: " + firstName);
+
+        Thread.sleep(10000);
 
 
     }
