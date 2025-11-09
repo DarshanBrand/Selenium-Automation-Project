@@ -75,9 +75,10 @@ public class Order {
         return cartItemPrice.getText().trim();   // return value to test class
     }
 
-    public void clickCheckoutButton() {
+    public void clickCheckoutButtonLogin() {
         checkoutButton.click();
     }
+
 
 
 
