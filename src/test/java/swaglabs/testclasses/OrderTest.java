@@ -52,11 +52,24 @@ public class OrderTest extends Baseclass {
         // Step 3: Access the first object (index 0)
         JsonObject firstCustomer = customers.get(0).getAsJsonObject();
 
-        // Step 4: Extract "firstName"
-        String firstName = firstCustomer.get("firstName").getAsString();
+        // Step 4: Extract customer details from JSON and enter them into the form
 
-        // Step 5: Print or use it in your test
-        System.out.println("First Customer First Name: " + firstName);
+        // Extract and enter the first name from JSON data
+        String firstName = firstCustomer.get("firstName").getAsString();
+        order.enterFirstName(firstName);
+
+        // Extract and enter the last name from JSON data
+        String lastName = firstCustomer.get("lastName").getAsString();
+        order.enterLastName(lastName);
+
+       // Extract and enter the postal/ZIP code from JSON data
+        String zipCode = firstCustomer.get("zipCode").getAsString();
+        order.enterPostalCode(zipCode);
+
+        // Click on the Continue button to proceed with the next step
+        order.clickContinueButton();
+
+
 
         Thread.sleep(10000);
 

@@ -41,6 +41,21 @@ public class Order {
     @FindBy(id = "checkout")
     private WebElement checkoutButton;
 
+    @FindBy(id = "first-name")
+    private WebElement firstName;
+
+    @FindBy(id = "last-name")
+    private WebElement lastName;
+
+    @FindBy(id = "postal-code")
+    private WebElement postalCode;
+
+    @FindBy(id = "continue")
+    private WebElement continueBtn;
+
+
+
+
     //=======================================================================================================
 
     public void clickOnProduct(String productName) {
@@ -75,18 +90,39 @@ public class Order {
         return cartItemPrice.getText().trim();   // return value to test class
     }
 
-
-    public void clickCheckoutButtonSignup() {
+    public void clickCheckoutButton() {
         checkoutButton.click();
     }
 
-
-
-
-
-
-
+    public void enterFirstName(String firstName) {
+        this.firstName.clear();
+        this.firstName.sendKeys(firstName);
     }
+
+    public void enterLastName(String lastName) {
+        this.lastName.clear();
+        this.lastName.sendKeys(lastName);
+    }
+
+    public void enterPostalCode(String postalCode) {
+        this.postalCode.clear();
+        this.postalCode.sendKeys(postalCode);
+    }
+
+    public void clickContinueButton() {
+        actionUtils.scrollIntoView(continueBtn);
+        continueBtn.click();
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 
