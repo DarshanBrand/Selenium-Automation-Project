@@ -1,8 +1,10 @@
 package swaglabs.testclasses;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import swaglabs.POM.Checkout;
 import swaglabs.POM.Order;
 import swaglabs.baseclasses.Baseclass;
 import swaglabs.utils.JsonUtils;
@@ -11,14 +13,16 @@ public class OrderTest extends Baseclass {
 
     @Test
     public void place_Order() throws InterruptedException {
+
         // Create an instance of the Order Page using the WebDriver instance
         Order order = new Order(driver);
+        Checkout checkout =new Checkout(driver);
 
        // Define the product name to be selected
-        String ProductName = "Sauce Labs Onesie";
+        String Cart_ProductName = "Sauce Labs Onesie";
 
        // Click on the specified product to open its details page
-        order.clickOnProduct(ProductName);
+        order.clickOnProduct(Cart_ProductName);
 
        // Click the 'Add to Cart' button on the product details page
         order.clickAddToCartButton();
@@ -27,19 +31,16 @@ public class OrderTest extends Baseclass {
         order.clickShoppingCartIcon();
 
        // Get the price of the selected product from the cart page
-        String Price = order.getPriceOfTheProductOnCartPage();
+        String Cart_Price = order.getPriceOfTheProductOnCartPage();
 
        // Print the product price in the console for reference
-        System.out.println("The Price of the Product is : " + Price);
+        System.out.println("The Price of the Product is : " + Cart_Price);
 
        // Create a SoftAssert instance for validation without immediate test termination
         SoftAssert softAssert = new SoftAssert();
 
        // Verify that the product price in the cart matches the expected value
-        softAssert.assertEquals(Price, "$7.99", "Product price mismatch!");
-
-       // Collate all soft assertions (marks test failed if any assertion fails)
-        softAssert.assertAll();
+        softAssert.assertEquals(Cart_Price, "$7.99", "Product price mismatch!");
 
        // Click on the 'Checkout' button to proceed to the checkout page
         order.clickCheckoutButton();
@@ -69,6 +70,38 @@ public class OrderTest extends Baseclass {
         // Click on the Continue button to proceed with the next step
         order.clickContinueButton();
 
+        // Retrieve the product name displayed on the checkout page
+        String checkout_ProductName = checkout.getNameOfTheProductOnCheckoutPage();
+
+        // Print the product name for verification
+        System.out.println("The product name displayed on the checkout page is: " + checkout_ProductName);
+
+        // Validate that the product name displayed on the checkout page matches the product name from the cart
+        Assert.assertEquals(checkout_ProductName, Cart_ProductName);
+
+       // Retrieve the product price displayed on the checkout page
+        String checkout_ProductPrice = checkout.getPriceOfTheProductOnCheckoutPage();
+
+        // Print the product price for verification
+        System.out.println("The product price displayed on the checkout page is: " + checkout_ProductPrice);
+
+        // Validate that the product price displayed on the checkout page matches the product price from the cart
+        Assert.assertEquals(checkout_ProductPrice, Cart_Price);
+
+        // Click on the Finish button to complete the checkout process
+        checkout.clickOnFinishButton();
+
+        // Retrieve the success header message displayed after successful checkout
+        String SuccessMessage = checkout.getSuccessHeaderMessage();
+
+       // Print the success message for verification
+        System.out.println("Success Message is: " + SuccessMessage);
+
+       // Validate that the success message matches the expected confirmation text
+        Assert.assertEquals(SuccessMessage, "Thank you for your order!");
+
+        // Collate all soft assertions (marks test failed if any assertion fails)
+        softAssert.assertAll();
 
 
         Thread.sleep(10000);

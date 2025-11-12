@@ -6,9 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import swaglabs.utils.ActionUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Order {
 
@@ -65,7 +63,7 @@ public class Order {
 
             if (name.equalsIgnoreCase(productName)) {
                 System.out.println(" Clicking on product: " + name);
-                actionUtils.clickElement(product);
+                actionUtils.click(product);
                 return; // stop once found and clicked
             }
         }
@@ -78,12 +76,12 @@ public class Order {
 
     public void clickAddToCartButton() {
 
-        actionUtils.clickElement(addToCartButton);
+        actionUtils.click(addToCartButton);
     }
 
     public void clickShoppingCartIcon() {
 
-        actionUtils.clickElement(shoppingCartIcon);
+        actionUtils.click(shoppingCartIcon);
     }
 
     public String getPriceOfTheProductOnCartPage() {
