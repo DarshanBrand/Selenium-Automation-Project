@@ -35,6 +35,6 @@ public class LoginPage {
         actionUtils = new ActionUtils(driver);
         actionUtils.sendKeysElement(usernameField,username);
         actionUtils.sendKeysElement(passwordField,password);
-        actionUtils.clickElement(loginBtn);
+        actionUtils.click(loginBtn);
     }
 }

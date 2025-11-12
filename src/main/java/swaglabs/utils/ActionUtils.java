@@ -19,7 +19,7 @@ public class ActionUtils {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void clickElement(WebElement element) {
+    public void click(WebElement element) {
         scrollIntoView(element);
         element.click();
     }

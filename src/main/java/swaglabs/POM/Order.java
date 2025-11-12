@@ -6,9 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import swaglabs.utils.ActionUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Order {
 
@@ -41,6 +39,21 @@ public class Order {
     @FindBy(id = "checkout")
     private WebElement checkoutButton;
 
+    @FindBy(id = "first-name")
+    private WebElement firstName;
+
+    @FindBy(id = "last-name")
+    private WebElement lastName;
+
+    @FindBy(id = "postal-code")
+    private WebElement postalCode;
+
+    @FindBy(id = "continue")
+    private WebElement continueBtn;
+
+
+
+
     //=======================================================================================================
 
     public void clickOnProduct(String productName) {
@@ -50,7 +63,7 @@ public class Order {
 
             if (name.equalsIgnoreCase(productName)) {
                 System.out.println(" Clicking on product: " + name);
-                actionUtils.clickElement(product);
+                actionUtils.click(product);
                 return; // stop once found and clicked
             }
         }
@@ -63,30 +76,51 @@ public class Order {
 
     public void clickAddToCartButton() {
 
-        actionUtils.clickElement(addToCartButton);
+        actionUtils.click(addToCartButton);
     }
 
     public void clickShoppingCartIcon() {
 
-        actionUtils.clickElement(shoppingCartIcon);
+        actionUtils.click(shoppingCartIcon);
     }
 
     public String getPriceOfTheProductOnCartPage() {
         return cartItemPrice.getText().trim();   // return value to test class
     }
 
-
-    public void clickCheckoutButtonSignup() {
+    public void clickCheckoutButton() {
         checkoutButton.click();
     }
 
-
-
-
-
-
-
+    public void enterFirstName(String firstName) {
+        this.firstName.clear();
+        this.firstName.sendKeys(firstName);
     }
+
+    public void enterLastName(String lastName) {
+        this.lastName.clear();
+        this.lastName.sendKeys(lastName);
+    }
+
+    public void enterPostalCode(String postalCode) {
+        this.postalCode.clear();
+        this.postalCode.sendKeys(postalCode);
+    }
+
+    public void clickContinueButton() {
+        actionUtils.scrollIntoView(continueBtn);
+        continueBtn.click();
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 
